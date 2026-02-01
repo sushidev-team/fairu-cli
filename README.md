@@ -5,13 +5,13 @@ Command-line interface for managing digital assets with [Fairu](https://fairu.ap
 ## Installation
 
 ```bash
-npm install -g fairu-cli
+npm install -g @fairu/cli
 ```
 
 Or use directly with npx:
 
 ```bash
-npx fairu-cli --help
+npx @fairu/cli --help
 ```
 
 ## Quick Start
