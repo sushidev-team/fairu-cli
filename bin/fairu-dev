@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Development wrapper for fairu-cli
+# Usage: ./bin/fairu-dev [commands...]
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+
+exec npx tsx "$PROJECT_DIR/src/cli.tsx" "$@"
