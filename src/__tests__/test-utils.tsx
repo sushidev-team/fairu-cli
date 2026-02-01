@@ -32,12 +32,30 @@ export function renderWithClient(
   const instance = inkRender(
     <ClientProvider value={mockClient as any}>{element}</ClientProvider>,
   );
+
+  // Helper to get the last non-empty frame (before app.exit() clears it)
+  const getLastFrame = () => {
+    const frames = instance.frames;
+    // Find last non-empty frame (skip frames that are just whitespace/newlines)
+    for (let i = frames.length - 1; i >= 0; i--) {
+      const frame = frames[i];
+      if (frame && frame.trim().length > 0) {
+        return frame;
+      }
+    }
+    return instance.lastFrame();
+  };
+
   return {
-    lastFrame: instance.lastFrame,
+    lastFrame: getLastFrame,
     frames: instance.frames,
     stdin: instance.stdin,
     unmount: instance.unmount,
     cleanup: instance.cleanup,
     mockClient,
   };
+}
+
+export async function waitForRender(ms = 100): Promise<void> {
+  await new Promise((r) => setTimeout(r, ms));
 }
