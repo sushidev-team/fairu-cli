@@ -1,6 +1,6 @@
 {
   "name": "fairu-cli",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Fairu CLI - Manage your digital assets from the terminal",
   "type": "module",
   "bin": {
