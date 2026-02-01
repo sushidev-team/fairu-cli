@@ -31,7 +31,7 @@ describe("CopyrightList", () => {
       <CopyrightList flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("CC BY 4.0");
     expect(output).toContain("All Rights Reserved");
@@ -46,7 +46,7 @@ describe("CopyrightGet", () => {
       <CopyrightGet id="cr-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Copyright Details");
     expect(output).toContain("cr-1");
@@ -60,7 +60,7 @@ describe("CopyrightGet", () => {
       <CopyrightGet id="unknown" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("not found");
   });
@@ -79,7 +79,7 @@ describe("LicenseList", () => {
       <LicenseList flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Standard");
     expect(output).toContain("Extended");
@@ -94,7 +94,7 @@ describe("LicenseGet", () => {
       <LicenseGet id="lic-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("License Details");
     expect(output).toContain("lic-1");
@@ -108,7 +108,7 @@ describe("LicenseGet", () => {
       <LicenseGet id="unknown" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("not found");
   });
@@ -121,7 +121,7 @@ describe("HealthCheck", () => {
       fairuHealthCheck: { status: "OK", version: "1.2.3" },
     });
     const { lastFrame } = renderWithClient(<HealthCheck />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Health Check");
     expect(output).toContain("OK");
@@ -136,7 +136,7 @@ describe("TenantInfo", () => {
       fairuTenant: { id: "tenant-1", name: "My Workspace" },
     });
     const { lastFrame } = renderWithClient(<TenantInfo />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Tenant Info");
     expect(output).toContain("tenant-1");

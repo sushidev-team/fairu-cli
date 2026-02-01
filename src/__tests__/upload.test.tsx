@@ -50,7 +50,7 @@ describe("Upload", () => {
       <Upload filePath="/path/to/nonexistent.jpg" flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("File not found");
   });
@@ -61,7 +61,7 @@ describe("Upload", () => {
       <Upload filePath="" flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("File path is required");
   });

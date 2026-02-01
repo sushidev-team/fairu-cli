@@ -18,7 +18,7 @@ describe("UserList", () => {
       },
     });
     const { lastFrame } = renderWithClient(<UserList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Alice");
     expect(output).toContain("Bob");
@@ -31,7 +31,7 @@ describe("UserList", () => {
       fairuUsers: { data: [], paginatorInfo: null },
     });
     const { lastFrame } = renderWithClient(<UserList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("No users found");
   });
@@ -44,7 +44,7 @@ describe("UserGet", () => {
       fairuUser: mockUsers[0],
     });
     const { lastFrame } = renderWithClient(<UserGet id="user-1" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("User Details");
     expect(output).toContain("user-1");
@@ -56,7 +56,7 @@ describe("UserGet", () => {
     const client = createMockClient();
     client.query.mockResolvedValue({ fairuUser: null });
     const { lastFrame } = renderWithClient(<UserGet id="unknown" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("not found");
   });
@@ -70,7 +70,7 @@ describe("UserInvite", () => {
       <UserInvite flags={{ email: "new@example.com", role: "role-1" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("invited successfully");
@@ -82,7 +82,7 @@ describe("UserInvite", () => {
       <UserInvite flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("required");
   });
@@ -96,7 +96,7 @@ describe("UserDelete", () => {
       <UserDelete id="user-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("deleted");

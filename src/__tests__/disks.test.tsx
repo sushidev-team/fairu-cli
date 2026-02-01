@@ -41,7 +41,7 @@ describe("DiskList", () => {
       },
     });
     const { lastFrame } = renderWithClient(<DiskList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Primary");
     expect(output).toContain("Backup");
@@ -54,7 +54,7 @@ describe("DiskList", () => {
       fairuDisks: { data: [], paginatorInfo: null },
     });
     const { lastFrame } = renderWithClient(<DiskList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("No disks found");
   });
@@ -78,7 +78,7 @@ describe("DiskGet", () => {
       },
     });
     const { lastFrame } = renderWithClient(<DiskGet id="disk-1" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Disk Details");
     expect(output).toContain("disk-1");
@@ -90,7 +90,7 @@ describe("DiskGet", () => {
     const client = createMockClient();
     client.query.mockResolvedValue({ fairuDisk: null });
     const { lastFrame } = renderWithClient(<DiskGet id="unknown" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("not found");
   });
@@ -110,7 +110,7 @@ describe("DiskStatus", () => {
       },
     });
     const { lastFrame } = renderWithClient(<DiskStatus id="disk-1" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Disk Status");
     expect(output).toContain("disk-1");
@@ -128,7 +128,7 @@ describe("DiskCreate", () => {
       <DiskCreate flags={{ name: "New Disk", type: "s3" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("created successfully");
@@ -140,7 +140,7 @@ describe("DiskCreate", () => {
       <DiskCreate flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("--name and --type are required");
   });
@@ -154,7 +154,7 @@ describe("DiskUpdate", () => {
       <DiskUpdate id="disk-1" flags={{ name: "Updated" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("updated");
@@ -169,7 +169,7 @@ describe("DiskDelete", () => {
       <DiskDelete id="disk-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("deleted");

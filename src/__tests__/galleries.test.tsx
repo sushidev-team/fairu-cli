@@ -48,7 +48,7 @@ describe("GalleryList", () => {
       <GalleryList flags={{}} tenantId="t-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Portfolio");
     expect(output).toContain("Showcase");
@@ -64,7 +64,7 @@ describe("GalleryList", () => {
       <GalleryList flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("No galleries found");
   });
@@ -78,7 +78,7 @@ describe("GalleryGet", () => {
       <GalleryGet id="gallery-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Gallery Details");
     expect(output).toContain("gallery-1");
@@ -92,7 +92,7 @@ describe("GalleryGet", () => {
       <GalleryGet id="unknown" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("not found");
   });
@@ -114,7 +114,7 @@ describe("GalleryItems", () => {
       <GalleryItems id="gallery-1" flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("photo1.jpg");
     expect(output).toContain("photo2.png");
@@ -131,7 +131,7 @@ describe("GalleryCreate", () => {
       <GalleryCreate flags={{ name: "New Gallery" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("created successfully");
@@ -143,7 +143,7 @@ describe("GalleryCreate", () => {
       <GalleryCreate flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("--name is required");
   });
@@ -157,7 +157,7 @@ describe("GalleryDelete", () => {
       <GalleryDelete id="gallery-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("deleted");
@@ -172,7 +172,7 @@ describe("GalleryUpdate", () => {
       <GalleryUpdate id="gallery-1" flags={{ name: "Updated" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("updated");
@@ -189,7 +189,7 @@ describe("GalleryShare", () => {
       <GalleryShare id="gallery-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("https://fairu.app/share/abc123");

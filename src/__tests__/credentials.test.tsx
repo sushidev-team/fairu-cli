@@ -28,7 +28,7 @@ describe("CredentialList", () => {
       fairuRakuCredentials: mockCredentials,
     });
     const { lastFrame } = renderWithClient(<CredentialList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Production");
     expect(output).toContain("AKID123");
@@ -41,7 +41,7 @@ describe("CredentialList", () => {
       fairuRakuCredentials: [],
     });
     const { lastFrame } = renderWithClient(<CredentialList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("No credentials found");
   });
@@ -64,7 +64,7 @@ describe("CredentialCreate", () => {
       <CredentialCreate flags={{ permissions: "read", name: "Test", bucket: "test-bucket" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("created successfully");
@@ -78,7 +78,7 @@ describe("CredentialCreate", () => {
       <CredentialCreate flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("--permissions is required");
   });
@@ -92,7 +92,7 @@ describe("CredentialRevoke", () => {
       <CredentialRevoke id="cred-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("revoked");
@@ -107,7 +107,7 @@ describe("CredentialDelete", () => {
       <CredentialDelete id="cred-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("deleted");

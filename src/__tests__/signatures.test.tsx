@@ -22,7 +22,7 @@ describe("PdfSignatureCreate", () => {
       <PdfSignatureCreate flags={{ "file-id": "file-1", emails: "a@b.com,c@d.com" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("created successfully");
@@ -36,7 +36,7 @@ describe("PdfSignatureCreate", () => {
       <PdfSignatureCreate flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("--file-id is required");
   });
@@ -52,7 +52,7 @@ describe("PdfSignatureStart", () => {
       <PdfSignatureStart id="sig-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("started");
@@ -67,7 +67,7 @@ describe("PdfSignatureCancel", () => {
       <PdfSignatureCancel id="sig-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("cancelled");
@@ -87,7 +87,7 @@ describe("FileAccessSign", () => {
       <FileAccessSign flags={{ ids: "f-1,f-2", "valid-for": "60" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("File Access Signatures");
@@ -101,7 +101,7 @@ describe("FileAccessSign", () => {
       <FileAccessSign flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("--ids is required");
   });

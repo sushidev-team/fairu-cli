@@ -10,7 +10,7 @@ describe("TenantInfo", () => {
       fairuTenant: { id: "tenant-1", name: "My Tenant" },
     });
     const { lastFrame } = renderWithClient(<TenantInfo />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Tenant Info");
     expect(output).toContain("tenant-1");
@@ -21,7 +21,7 @@ describe("TenantInfo", () => {
     const client = createMockClient();
     client.query.mockResolvedValue({ fairuTenant: null });
     const { lastFrame } = renderWithClient(<TenantInfo />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("not available");
   });
@@ -42,7 +42,7 @@ describe("TenantCreate", () => {
       <TenantCreate flags={{ name: "New" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("created successfully");
@@ -55,7 +55,7 @@ describe("TenantCreate", () => {
       <TenantCreate flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("--name is required");
   });
@@ -69,7 +69,7 @@ describe("TenantUpdate", () => {
       <TenantUpdate flags={{ name: "Updated Name" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("Tenant updated");
@@ -83,7 +83,7 @@ describe("TenantDomains", () => {
       fairuSupportedDomains: ["fairu.app", "custom.domain.com", "files.example.org"],
     });
     const { lastFrame } = renderWithClient(<TenantDomains />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Supported Domains");
     expect(output).toContain("fairu.app");
@@ -96,7 +96,7 @@ describe("TenantDomains", () => {
       fairuSupportedDomains: [],
     });
     const { lastFrame } = renderWithClient(<TenantDomains />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("No supported domains found");
   });

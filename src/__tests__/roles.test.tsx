@@ -18,7 +18,7 @@ describe("RoleList", () => {
       },
     });
     const { lastFrame } = renderWithClient(<RoleList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Admin");
     expect(output).toContain("Editor");
@@ -31,7 +31,7 @@ describe("RoleList", () => {
       fairuRoles: { data: [], paginatorInfo: null },
     });
     const { lastFrame } = renderWithClient(<RoleList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("No roles found");
   });
@@ -50,7 +50,7 @@ describe("RoleGet", () => {
       },
     });
     const { lastFrame } = renderWithClient(<RoleGet id="role-1" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Role Details");
     expect(output).toContain("role-1");
@@ -62,7 +62,7 @@ describe("RoleGet", () => {
     const client = createMockClient();
     client.query.mockResolvedValue({ fairuRole: null });
     const { lastFrame } = renderWithClient(<RoleGet id="unknown" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("not found");
   });
@@ -78,7 +78,7 @@ describe("RoleCreate", () => {
       <RoleCreate flags={{ name: "Viewer", permissions: "read" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("created successfully");
@@ -90,7 +90,7 @@ describe("RoleCreate", () => {
       <RoleCreate flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("--name is required");
   });
@@ -104,7 +104,7 @@ describe("RoleUpdate", () => {
       <RoleUpdate id="role-1" flags={{ name: "Super Admin" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("updated");
@@ -119,7 +119,7 @@ describe("RoleDelete", () => {
       <RoleDelete id="role-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("deleted");

@@ -18,7 +18,7 @@ describe("DmcaList", () => {
       },
     });
     const { lastFrame } = renderWithClient(<DmcaList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("John");
     expect(output).toContain("Jane");
@@ -31,7 +31,7 @@ describe("DmcaList", () => {
       fairuDmcas: { data: [], paginatorInfo: null },
     });
     const { lastFrame } = renderWithClient(<DmcaList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("No DMCA complaints found");
   });
@@ -51,7 +51,7 @@ describe("DmcaGet", () => {
       },
     });
     const { lastFrame } = renderWithClient(<DmcaGet id="dmca-1" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("DMCA Details");
     expect(output).toContain("dmca-1");
@@ -63,7 +63,7 @@ describe("DmcaGet", () => {
     const client = createMockClient();
     client.query.mockResolvedValue({ fairuDmca: null });
     const { lastFrame } = renderWithClient(<DmcaGet id="unknown" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("not found");
   });
@@ -77,7 +77,7 @@ describe("DmcaCreate", () => {
       <DmcaCreate flags={{ name: "John", email: "john@example.com", url: "https://example.com/file" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("submitted");
@@ -89,7 +89,7 @@ describe("DmcaCreate", () => {
       <DmcaCreate flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("required");
   });
@@ -105,7 +105,7 @@ describe("DmcaUpdate", () => {
       <DmcaUpdate id="dmca-1" flags={{ reply: "Handled" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("updated");

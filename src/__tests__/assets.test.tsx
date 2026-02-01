@@ -49,7 +49,7 @@ describe("AssetsList", () => {
       paginatorInfo: { currentPage: 1, lastPage: 1, total: 2 },
     });
     const { lastFrame } = renderWithClient(<AssetsList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("photo.jpg");
     expect(output).toContain("document.pdf");
@@ -63,7 +63,7 @@ describe("AssetsList", () => {
       paginatorInfo: { currentPage: 1, lastPage: 3, total: 50 },
     });
     const { lastFrame } = renderWithClient(<AssetsList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Page 1");
     expect(output).toContain("50 total");
@@ -76,7 +76,7 @@ describe("AssetsList", () => {
       paginatorInfo: null,
     });
     const { lastFrame } = renderWithClient(<AssetsList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("No assets found");
   });
@@ -87,7 +87,7 @@ describe("AssetGet", () => {
     const client = createMockClient();
     client.assets.find.mockResolvedValue(mockAssets[0]);
     const { lastFrame } = renderWithClient(<AssetGet id="asset-1" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Asset Details");
     expect(output).toContain("asset-1");
@@ -100,7 +100,7 @@ describe("AssetGet", () => {
     const client = createMockClient();
     client.assets.find.mockResolvedValue(null);
     const { lastFrame } = renderWithClient(<AssetGet id="unknown" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("not found");
   });
@@ -119,7 +119,7 @@ describe("AssetSearch", () => {
       <AssetSearch query="photo" flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Search Results");
     expect(output).toContain("photo.jpg");
@@ -134,7 +134,7 @@ describe("AssetSearch", () => {
       <AssetSearch query="nonexistent" flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("No results");
   });
@@ -148,7 +148,7 @@ describe("AssetDelete", () => {
       <AssetDelete id="asset-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.assets.delete).toHaveBeenCalledWith("asset-1");
     expect(output).toContain("deleted successfully");
@@ -163,7 +163,7 @@ describe("AssetBlock", () => {
       <AssetBlock id="asset-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("blocked");
@@ -178,7 +178,7 @@ describe("AssetUnblock", () => {
       <AssetUnblock id="asset-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("unblocked");
@@ -193,7 +193,7 @@ describe("AssetRename", () => {
       <AssetRename id="asset-1" name="renamed.jpg" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("renamed");
@@ -208,7 +208,7 @@ describe("AssetMove", () => {
       <AssetMove id="asset-1" targetFolder="folder-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("moved");
@@ -221,7 +221,7 @@ describe("AssetMove", () => {
       <AssetMove id="asset-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("root");
   });
@@ -235,7 +235,7 @@ describe("AssetDuplicate", () => {
       <AssetDuplicate id="asset-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("duplicated");
@@ -253,7 +253,7 @@ describe("AssetUpdate", () => {
       />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.assets.update).toHaveBeenCalledWith({
       id: "asset-1",

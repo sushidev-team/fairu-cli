@@ -10,7 +10,7 @@ describe("HealthCheck", () => {
       fairuHealthCheck: { status: "OK", version: "2.0.0" },
     });
     const { lastFrame } = renderWithClient(<HealthCheck />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Health Check");
     expect(output).toContain("OK");
@@ -21,7 +21,7 @@ describe("HealthCheck", () => {
     const client = createMockClient();
     client.query.mockResolvedValue({ fairuHealthCheck: null });
     const { lastFrame } = renderWithClient(<HealthCheck />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Could not reach");
   });

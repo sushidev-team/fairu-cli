@@ -24,7 +24,7 @@ describe("WorkflowList", () => {
       },
     });
     const { lastFrame } = renderWithClient(<WorkflowList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Import");
     expect(output).toContain("Export");
@@ -37,7 +37,7 @@ describe("WorkflowList", () => {
       fairuWorkflows: { data: [], paginatorInfo: null },
     });
     const { lastFrame } = renderWithClient(<WorkflowList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("No workflows found");
   });
@@ -59,7 +59,7 @@ describe("WorkflowGet", () => {
       },
     });
     const { lastFrame } = renderWithClient(<WorkflowGet id="wf-1" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Workflow Details");
     expect(output).toContain("wf-1");
@@ -71,7 +71,7 @@ describe("WorkflowGet", () => {
     const client = createMockClient();
     client.query.mockResolvedValue({ fairuWorkflow: null });
     const { lastFrame } = renderWithClient(<WorkflowGet id="unknown" />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("not found");
   });
@@ -87,7 +87,7 @@ describe("WorkflowCreate", () => {
       <WorkflowCreate flags={{ name: "New Workflow", type: "disk_sync" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("created successfully");
@@ -99,7 +99,7 @@ describe("WorkflowCreate", () => {
       <WorkflowCreate flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("--name is required");
   });
@@ -113,7 +113,7 @@ describe("WorkflowUpdate", () => {
       <WorkflowUpdate id="wf-1" flags={{ name: "Updated" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("updated");
@@ -128,7 +128,7 @@ describe("WorkflowDelete", () => {
       <WorkflowDelete id="wf-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("deleted");

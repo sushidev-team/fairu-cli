@@ -44,7 +44,7 @@ describe("FolderList", () => {
       },
     });
     const { lastFrame } = renderWithClient(<FolderList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Images");
     expect(output).toContain("photo.jpg");
@@ -61,7 +61,7 @@ describe("FolderList", () => {
       },
     });
     const { lastFrame } = renderWithClient(<FolderList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Page 1");
   });
@@ -72,7 +72,7 @@ describe("FolderList", () => {
       fairuFolder: { data: [], paginatorInfo: null },
     });
     const { lastFrame } = renderWithClient(<FolderList flags={{}} />, client);
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("empty");
   });
@@ -86,7 +86,7 @@ describe("FolderGet", () => {
       <FolderGet path="/Images" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("Folder Details");
     expect(output).toContain("folder-1");
@@ -100,7 +100,7 @@ describe("FolderGet", () => {
       <FolderGet path="/Unknown" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("not found");
   });
@@ -116,7 +116,7 @@ describe("FolderCreate", () => {
       <FolderCreate flags={{ name: "New Folder" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("created successfully");
@@ -128,7 +128,7 @@ describe("FolderCreate", () => {
       <FolderCreate flags={{}} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(output).toContain("--name is required");
   });
@@ -142,7 +142,7 @@ describe("FolderDelete", () => {
       <FolderDelete id="folder-1" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("deleted");
@@ -157,7 +157,7 @@ describe("FolderRename", () => {
       <FolderRename id="folder-1" name="Renamed" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("renamed");
@@ -172,7 +172,7 @@ describe("FolderMove", () => {
       <FolderMove id="folder-1" targetParent="folder-2" />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("moved");
@@ -187,7 +187,7 @@ describe("FolderUpdate", () => {
       <FolderUpdate id="folder-1" flags={{ name: "Updated" }} />,
       client,
     );
-    await new Promise((r) => setTimeout(r, 50));
+    await new Promise((r) => setTimeout(r, 100));
     const output = lastFrame();
     expect(client.mutate).toHaveBeenCalled();
     expect(output).toContain("updated");
