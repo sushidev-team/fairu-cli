@@ -1,5 +1,9 @@
 import React from "react";
 import { Box, Text, useApp } from "ink";
+import { createRequire } from "module";
+
+const require = createRequire(import.meta.url);
+const pkg = require("../../package.json");
 
 interface CommandProps {
   action: string;
@@ -52,7 +56,7 @@ export function HelpCommand() {
       {/* Header */}
       <Box marginBottom={1}>
         <Text color="magenta" bold>⬡ Fairu CLI</Text>
-        <Text color="gray"> v0.1.0</Text>
+        <Text color="gray"> v{pkg.version}</Text>
       </Box>
 
       {/* Usage */}

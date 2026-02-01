@@ -1,5 +1,6 @@
 import React from "react";
 import { render } from "ink";
+import { createRequire } from "module";
 import { ClientProvider, buildClient } from "./client.js";
 import { App } from "./app.js";
 import { ConfigCommand } from "./commands/config-cmd.js";
@@ -7,10 +8,13 @@ import { HelpCommand } from "./commands/help.js";
 import { getTenantConfig } from "./config.js";
 import { parseArgs } from "./utils.js";
 
+const require = createRequire(import.meta.url);
+const pkg = require("../package.json");
+
 const args = parseArgs(process.argv);
 
 if (args.flags.version) {
-  console.log("fairu-cli v0.1.0");
+  console.log(`@fairu/cli v${pkg.version}`);
   process.exit(0);
 }
 
